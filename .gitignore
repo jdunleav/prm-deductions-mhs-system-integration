@@ -1,0 +1,8 @@
+# IntelliJ
+.idea
+
+# Python
+venv
+
+# Python - Coverage
+.coverage
