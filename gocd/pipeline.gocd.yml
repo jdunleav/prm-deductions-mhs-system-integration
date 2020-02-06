@@ -1,0 +1,31 @@
+format_version: 4
+
+pipelines:
+  "mhs-build-test":
+    group: mhs
+    label_template: "${git[:8]}"
+    materials:
+      git:
+        type: configrepo
+    stages:
+      - test:
+          clean_workspace: true
+          jobs:
+            unit:
+              resources:
+                - docker
+              tasks:
+                - exec:
+                    command: /bin/bash
+                    arguments:
+                      - -c
+                      - ./tasks unit_tests
+            integration:
+              resources:
+                - docker
+              tasks:
+                - exec:
+                    command: /bin/bash
+                    arguments:
+                      - -c
+                      - ./tasks integration_tests

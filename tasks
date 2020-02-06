@@ -29,8 +29,8 @@ case "${command}" in
     dojo -c Dojofile-py "./tasks _functional_tests"
     ;;
   *)
-      echo "Invalid command: '${command}'"
-      exit 1
-      ;;
+    echo "Invalid command: '${command}'"
+    exit 1
+    ;;
 esac
 set +e
