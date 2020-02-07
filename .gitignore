@@ -6,3 +6,6 @@ venv/
 
 # Python - Coverage
 .coverage
+
+# Dojo
+*.dojo

@@ -86,3 +86,42 @@ source venv/bin/activate
 # Runs the functional tests
 (venv)$ python -m unittest discover tests/functional
 ```
+
+# Docker LDAP
+
+docker-compose-itest.yml
+
+| Service         | Description                                   | Ports       |
+|:---------------:|:----------------------------------------------|-------------|
+| mhs-python-dojo | Python dojo environment containing ldap-utils |             |
+| phpldapadmin    | Admin console for openldap server             | 8080        |
+| openldap        | OpenLDAP server                               | 389 (ldap)  |
+|                 |                                               | 636 (ldaps) | 
+## Admin Console
+
+The phpldapadmin console is running on port `8080`:
+
+Username: `cn=admin,dc=nhs,dc=uk`
+Password: `admin`
+
+## Command line (ldapsearch)
+
+The scripts [example_ldap_search](docker/ldap/example_ldap_search.sh) and 
+[example_ldaps_search_tls](docker/ldap/example_ldaps_search_tls.sh) demonstrate how we can
+connect to the openldap docker instance using `ldap` and `ldaps` (using TLS). 
+
+The volume for the certificates have been mounted to stop them being re-generated.
+
+To run these and see the response:
+```bash
+$ dojo -c Dojofile-itest
+
+# LDAPS (ldapsearch)
+# You need to be in the docker/ldap folder to run this
+# You will get 'ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)' if you are not
+(mhs-python-dojo)$ ./example_ldaps_search_tls.sh
+
+# LDAP (ldapsearch)
+# From the docker/ldap folder
+(mhs-python-dojo)$ ./example_ldap_search.sh 
+```

@@ -13,20 +13,20 @@ case "${command}" in
     python -m unittest discover tests/unit
     ;;
   unit_tests)
-    dojo -c Dojofile-py "./tasks _unit_tests"
+    dojo "./tasks _unit_tests"
     ;;
   _integration_tests)
     install_requirements
     python -m unittest discover tests/integration
     ;;
   integration_tests)
-    dojo -c Dojofile-py "./tasks _integration_tests"
+    dojo -c Dojofile-itest "./tasks _integration_tests"
     ;;
   _functional_tests)
     python -m unittest discover tests/functional
     ;;
   functional_tests)
-    dojo -c Dojofile-py "./tasks _functional_tests"
+    dojo "./tasks _functional_tests"
     ;;
   *)
     echo "Invalid command: '${command}'"

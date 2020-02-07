@@ -1,0 +1,1 @@
+ldapsearch -L -v -x -D cn=admin,dc=nhs,dc=uk -w admin -H ldap://openldap:389 -b dc=nhs,dc=uk '(objectClass=*)' '+' '*'
