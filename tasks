@@ -10,20 +10,20 @@ command="$1"
 case "${command}" in
   _unit_tests)
     install_requirements
-    python -m unittest discover tests/unit
+    python -m unittest discover mhs-system-integration/tests/unit -t ./mhs-system-integration
     ;;
   unit_tests)
     dojo "./tasks _unit_tests"
     ;;
   _integration_tests)
     install_requirements
-    python -m unittest discover tests/integration
+    python -m unittest discover mhs-system-integration/tests/integration -t ./mhs-system-integration
     ;;
   integration_tests)
     dojo -c Dojofile-itest "./tasks _integration_tests"
     ;;
   _functional_tests)
-    python -m unittest discover tests/functional
+    python -m unittest discover mhs-system-integration/tests/functional -t ./mhs-system-integration
     ;;
   functional_tests)
     dojo "./tasks _functional_tests"
