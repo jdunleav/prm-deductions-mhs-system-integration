@@ -14,6 +14,15 @@ Create system integration tests for the MHS Adapter and supporting environment, 
     * [virtualenv](https://docs.python.org/3/library/venv.html)
     * [kudulab/dojo](https://github.com/kudulab/dojo)
 
+## Environment Variables
+
+| Environment Variable | Description                                                              | Default Value |
+|----------------------|--------------------------------------------------------------------------|---------------|
+| LDAP_HOSTNAME        | Defines the hostname of the target LDAP server                           | 'localhost'   |
+| LDAP_PORT            | Defines the port of the target LDAP server                               | '389'         |
+| LDAP_ENABLE_TLS      | True: will use 'ldaps://' (requires public, private and ca certificates) | False         | 
+
+
 ## Testing
 
 There are three levels of testing: 
