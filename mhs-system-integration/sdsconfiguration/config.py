@@ -58,7 +58,7 @@ class LdapConfig:
 
         Sets isTLSEnabled to true if isTLSEnabled is set, false otherwise (default)
         """
-        self._is_TLS_enabled = os.getenv('LDAP_ENABLE_TLS', False)
+        self._is_TLS_enabled = (os.getenv('LDAP_ENABLE_TLS', "False") == "True")
 
     def _initialiseClientCert(self):
         """

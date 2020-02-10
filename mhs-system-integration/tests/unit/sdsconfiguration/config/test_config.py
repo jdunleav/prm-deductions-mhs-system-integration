@@ -64,10 +64,12 @@ class TestConfig(unittest.TestCase):
         self.assertEqual(LdapConfig().getPort(), ldapPort)
 
     def test_default_enable_tls_flag(self):
+        self.assertTrue(type(LdapConfig().isTLSEnabled()) is bool)
         self.assertFalse(LdapConfig().isTLSEnabled())
 
     def test_environment_var_overrides_enable_tls_flag(self):
         os.environ[ldapEnableTLSKey] = str(ldapEnableTLS)
+        self.assertTrue(type(LdapConfig().isTLSEnabled()) is bool)
         self.assertTrue(LdapConfig().isTLSEnabled())
 
     def test_default_client_cert_config(self):
