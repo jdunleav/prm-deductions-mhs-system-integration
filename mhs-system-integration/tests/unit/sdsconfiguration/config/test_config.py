@@ -50,46 +50,46 @@ class TestConfig(unittest.TestCase):
             del os.environ[ldapCACertKey]
 
     def test_default_hostname_config(self):
-        self.assertEqual(LdapConfig().hostname, defaultHostname)
+        self.assertEqual(LdapConfig().getHostname(), defaultHostname)
 
     def test_environment_var_overrides_hostname_config(self):
         os.environ[ldapHostnameKey] = ldapHostname
-        self.assertEqual(LdapConfig().hostname, ldapHostname)
+        self.assertEqual(LdapConfig().getHostname(), ldapHostname)
 
     def test_default_port_config(self):
-        self.assertEqual(LdapConfig().port, defaultPort)
+        self.assertEqual(LdapConfig().getPort(), defaultPort)
 
     def test_environment_var_overrides_port_config(self):
         os.environ[ldapPortKey] = ldapPort
-        self.assertEqual(LdapConfig().port, ldapPort)
+        self.assertEqual(LdapConfig().getPort(), ldapPort)
 
     def test_default_enable_tls_flag(self):
-        self.assertFalse(LdapConfig().is_TLS_enabled)
+        self.assertFalse(LdapConfig().isTLSEnabled())
 
     def test_environment_var_overrides_enable_tls_flag(self):
         os.environ[ldapEnableTLSKey] = str(ldapEnableTLS)
-        self.assertTrue(LdapConfig().is_TLS_enabled)
+        self.assertTrue(LdapConfig().isTLSEnabled())
 
     def test_default_client_cert_config(self):
-        self.assertEqual(LdapConfig().client_cert, "")
+        self.assertEqual(LdapConfig().getClientCert(), "")
 
     def test_environment_var_override_client_cert(self):
         os.environ[ldapClientCertKey] = ldapClientCert
-        self.assertEqual(LdapConfig().client_cert, ldapClientCert)
+        self.assertEqual(LdapConfig().getClientCert(), ldapClientCert)
 
     def test_default_client_key_config(self):
-        self.assertEqual(LdapConfig().client_key, "")
+        self.assertEqual(LdapConfig().getClientKey(), "")
 
     def test_environment_var_override_client_key(self):
         os.environ[ldapClientPrivateKey] = ldapClientPrivate
-        self.assertEqual(LdapConfig().client_key, ldapClientPrivate)
+        self.assertEqual(LdapConfig().getClientKey(), ldapClientPrivate)
 
     def test_default_ca_cert_config(self):
-        self.assertEqual(LdapConfig().ca_cert, "")
+        self.assertEqual(LdapConfig().getCACert(), "")
 
     def test_environment_var_override_ca_cert(self):
         os.environ[ldapCACertKey] = ldapCACert
-        self.assertEqual(LdapConfig().ca_cert, ldapCACert)
+        self.assertEqual(LdapConfig().getCACert(), ldapCACert)
 
 
 if __name__ == '__main__':

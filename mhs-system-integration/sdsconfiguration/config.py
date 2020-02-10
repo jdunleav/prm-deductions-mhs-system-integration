@@ -17,13 +17,31 @@ class LdapConfig:
         self._initialiseClientKey()
         self._initialiseCACert()
 
+    def getHostname(self):
+        return self._hostname
+
+    def getPort(self):
+        return self._port
+
+    def isTLSEnabled(self):
+        return self._is_TLS_enabled
+
+    def getClientCert(self):
+        return self._client_cert
+
+    def getClientKey(self):
+        return self._client_key
+
+    def getCACert(self):
+        return self._ca_cert
+
     def _initialiseLdapHostname(self):
         """
         Initiates the Hostname information for the target LDAP server
 
         Sets hostname to the value of LDAP_HOSTNAME env variable or localhost
         """
-        self.hostname = os.getenv('LDAP_HOSTNAME', "localhost")
+        self._hostname = os.getenv('LDAP_HOSTNAME', "localhost")
 
     def _initialiseLdapPort(self):
         """
@@ -31,7 +49,7 @@ class LdapConfig:
 
         Sets port to the value of LDAP_PORT env variable or 389 (ldap)
         """
-        self.port = os.getenv('LDAP_PORT', '389')
+        self._port = os.getenv('LDAP_PORT', '389')
 
     def _initialiseIsTLSEnabled(self):
         """
@@ -40,7 +58,7 @@ class LdapConfig:
 
         Sets isTLSEnabled to true if isTLSEnabled is set, false otherwise (default)
         """
-        self.is_TLS_enabled = os.getenv('LDAP_ENABLE_TLS', False)
+        self._is_TLS_enabled = os.getenv('LDAP_ENABLE_TLS', False)
 
     def _initialiseClientCert(self):
         """
@@ -50,7 +68,7 @@ class LdapConfig:
 
         Sets client_cert path to client certificate if defined, default is empty string
         """
-        self.client_cert = os.getenv('LDAP_CLIENT_CERT', "")
+        self._client_cert = os.getenv('LDAP_CLIENT_CERT', "")
 
     def _initialiseClientKey(self):
         """
@@ -60,7 +78,7 @@ class LdapConfig:
 
         Sets client_key path to client private key if defined, default is empty string
         """
-        self.client_key = os.getenv('LDAP_CLIENT_KEY', "")
+        self._client_key = os.getenv('LDAP_CLIENT_KEY', "")
 
     def _initialiseCACert(self):
         """
@@ -70,4 +88,4 @@ class LdapConfig:
 
         Sets ca_cert path to ca certificate if defined, default is empty string
         """
-        self.ca_cert = os.getenv('LDAP_CA_CERT', "")
+        self._ca_cert = os.getenv('LDAP_CA_CERT', "")
