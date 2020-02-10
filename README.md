@@ -20,8 +20,10 @@ Create system integration tests for the MHS Adapter and supporting environment, 
 |----------------------|--------------------------------------------------------------------------|---------------|
 | LDAP_HOSTNAME        | Defines the hostname of the target LDAP server                           | 'localhost'   |
 | LDAP_PORT            | Defines the port of the target LDAP server                               | '389'         |
-| LDAP_ENABLE_TLS      | True: will use 'ldaps://' (requires public, private and ca certificates) | False         | 
-
+| LDAP_ENABLE_TLS      | True: will use 'ldaps://' (requires public, private and ca certificates) | False         |
+| LDAP_CLIENT_CERT     | Path to client certificate for TLS enabled connections                   | ''            | 
+| LDAP_CLIENT_KEY      | Path to client private key for TLS enabled connections                   | ''            |
+| LDAP_CA_CERT         | Path to CA Certificate for TLS enabled connection                        | ''            |
 
 ## Testing
 
