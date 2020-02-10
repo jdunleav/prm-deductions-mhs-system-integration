@@ -25,6 +25,10 @@ Create system integration tests for the MHS Adapter and supporting environment, 
 | LDAP_CLIENT_KEY      | Path to client private key for TLS enabled connections                   | ''            |
 | LDAP_CA_CERT         | Path to CA Certificate for TLS enabled connection                        | ''            |
 
+`LDAP_CLIENT_CERT`, `LDAP_CLIENT_KEY`, and `LDAP_CA_CERT` are paths to the resource. If they start with `/`, it is assumed that 
+an absolute path is provided. Otherwise, it will prepend the resources root folder and expects a relative path such 
+as `certs/ca.crt`.
+
 ## Testing
 
 There are three levels of testing: 
