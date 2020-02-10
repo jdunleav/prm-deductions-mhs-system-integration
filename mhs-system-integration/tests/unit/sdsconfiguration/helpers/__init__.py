@@ -1,1 +1,1 @@
-__all__ = ['test_ldap_service']
+__all__ = ['test_ldap_service', 'test_utils']
