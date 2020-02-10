@@ -1,62 +1,73 @@
 import os
 
 
-def getLdapHostname():
-    """
-    Gets the Hostname information for the target LDAP server
+class LdapConfig:
 
-    :returns: Value of LDAP_HOSTNAME env variable or localhost
-    """
-    return os.getenv('LDAP_HOSTNAME', "localhost")
+    def __init__(self):
 
+        # TLS Configuration
+        self._initialiseIsTLSEnabled()
 
-def getLdapPort():
-    """
-    Gets the Port information for the target LDAP server
+        # Endpoint
+        self._initialiseLdapHostname()
+        self._initialiseLdapPort()
 
-    :returns: Value of LDAP_PORT env variable or 389 (ldap)
-    """
-    return os.getenv('LDAP_PORT', '389')
+        # Certificates
+        self._initialiseClientCert()
+        self._initialiseClientKey()
+        self._initialiseCACert()
 
+    def _initialiseLdapHostname(self):
+        """
+        Initiates the Hostname information for the target LDAP server
 
-def isTLSEnabled():
-    """
-    Gets the enable TLS flag information to see whether to select 'ldap' or 'ldaps' and if the
-    public, private and CA certificates are required.
+        Sets hostname to the value of LDAP_HOSTNAME env variable or localhost
+        """
+        self.hostname = os.getenv('LDAP_HOSTNAME', "localhost")
 
-    :returns: true if isTLSEnabled is set, false otherwise (default)
-    """
-    return os.getenv('LDAP_ENABLE_TLS', False)
+    def _initialiseLdapPort(self):
+        """
+        Initiates the Port information for the target LDAP server
 
+        Sets port to the value of LDAP_PORT env variable or 389 (ldap)
+        """
+        self.port = os.getenv('LDAP_PORT', '389')
 
-def getClientCert():
-    """
-    Gets the public certificate location to be able to provide it to the Ldap service for TLS enabled connections.
+    def _initialiseIsTLSEnabled(self):
+        """
+        Initiates the enable TLS flag information to see whether to select 'ldap' or 'ldaps' and if the
+        public, private and CA certificates are required.
 
-    This value is required when isTLSEnabled is set to True.
+        Sets isTLSEnabled to true if isTLSEnabled is set, false otherwise (default)
+        """
+        self.is_TLS_enabled = os.getenv('LDAP_ENABLE_TLS', False)
 
-    :returns: path to client certificate if defined, default is empty string
-    """
-    return os.getenv('LDAP_CLIENT_CERT', "")
+    def _initialiseClientCert(self):
+        """
+        Initiates the public certificate location to be able to provide it to the Ldap service for TLS enabled connections.
 
+        This value is required when isTLSEnabled is set to True.
 
-def getClientKey():
-    """
-    Gets the client private key location to be able to provide it to the Ldap service for TLS enabled connections.
+        Sets client_cert path to client certificate if defined, default is empty string
+        """
+        self.client_cert = os.getenv('LDAP_CLIENT_CERT', "")
 
-    This value is required when isTLSEnabled is set to True.
+    def _initialiseClientKey(self):
+        """
+        Initiates the client private key location to be able to provide it to the Ldap service for TLS enabled connections.
 
-    :returns: path to client private key if defined, default is empty string
-    """
-    return os.getenv('LDAP_CLIENT_KEY', "")
+        This value is required when isTLSEnabled is set to True.
 
+        Sets client_key path to client private key if defined, default is empty string
+        """
+        self.client_key = os.getenv('LDAP_CLIENT_KEY', "")
 
-def getCACert():
-    """
-    Gets the CA certificate location to be able to provide it to the Ldap service for TLS enabled connections.
+    def _initialiseCACert(self):
+        """
+        Initiates the CA certificate location to be able to provide it to the Ldap service for TLS enabled connections.
 
-    This value is required when isTLSEnabled is set to True.
+        This value is required when isTLSEnabled is set to True.
 
-    :returns: path to ca certificate if defined, default is empty string
-    """
-    return os.getenv('LDAP_CA_CERT', "")
+        Sets ca_cert path to ca certificate if defined, default is empty string
+        """
+        self.ca_cert = os.getenv('LDAP_CA_CERT', "")
