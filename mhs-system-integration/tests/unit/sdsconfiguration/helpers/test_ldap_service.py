@@ -4,6 +4,7 @@ from sdsconfiguration.helpers.ldap_service import LdapService
 ldapEndpoint = "ldap://localhost:389"
 ldapsEndpoint = "ldaps://localhost:686"
 
+
 class TestLdapService(unittest.TestCase):
     """
     Unit level tests for the ldap_service helper

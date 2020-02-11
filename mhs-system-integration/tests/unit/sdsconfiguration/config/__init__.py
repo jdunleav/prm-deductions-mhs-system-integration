@@ -1,1 +1,1 @@
-__all__ = ['test_config']
+__all__ = ['test_ldap_config.py']
